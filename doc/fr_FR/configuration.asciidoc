@@ -1,0 +1,9 @@
+==== Configuration du plugin
+
+Le plugin ne comporte pas de configuration générale.
+
+Lorsque l'on créer un équipement on doit fournir les éléments suivant :
+
+  * API Key (sur le site Openpaths.cc)
+  * API Secret (sur le site Openpaths.cc)
+  * la commande geoloc qu'on souhaite mettre à jour à partir des données Openpaths

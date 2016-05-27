@@ -1,0 +1,7 @@
+==== Openpaths, géolocalisation par téléphone
+
+Ce plugin permet de récupérer les informations de géolocalisation depuis l'application Openpaths
+
+Openpaths met à disposition des serveurs qui servent à stocker les données des applis mobiles. Mais sans pouvoir lire les données. Openpaths assure une confidentialité et une non utilisation des données sans votre accord.
+
+Il est possible de participer à un certain nombre de projets partenaire et ainsi transmettre des données anonymement mais ce choix est à faire et par défaut ce n'est pas actif (et l'activation se fait projet par projet)
