@@ -5,7 +5,7 @@ if (!isConnect('admin')) {
 }
 sendVarToJS('eqType', 'dashbutton');
 $eqLogics = eqLogic::byType('dashbutton');
-state = config::byKey('include_mode', 'dashbutton');
+$state = config::byKey('include_mode', 'dashbutton');
 echo '<div id="div_inclusionAlert"></div>';
 if ($state == 1) {
 			echo '<div class="alert jqAlert alert-warning" id="div_inclusionAlert" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Vous Ãªtes en mode inclusion. Cliquez Ã  nouveau sur le bouton d\'inclusion pour sortir de ce mode}}</div>';

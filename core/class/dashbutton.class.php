@@ -51,7 +51,7 @@ class dashbutton extends eqLogic {
       $url = config::byKey('internalProtocol') . config::byKey('internalAddr'). ':' . config::byKey('internalPort') . config::byKey('internalComplement') . '/core/api/jeeApi.php?api=' . config::byKey('api');
     }
 
-    $cmd = 'python ' . $service_path . '/dashbutton.python ' . $url;
+    $cmd = 'python ' . $service_path . '/dashbutton.py ' . $url;
 
     log::add('dashbutton', 'debug', $cmd);
     $result = exec('sudo ' . $cmd . ' >> ' . log::getPathToLog('dashbutton_node') . ' 2>&1 &');
@@ -108,7 +108,7 @@ class dashbutton extends eqLogic {
   }
 
   public static function dependancy_install() {
-    exec('sudo apt-get -y install python-scapy >> ' . log::getPathToLog('unipi_dep') . ' 2>&1 &');
+    exec('sudo apt-get -y install python-scapy tcpdump >> ' . log::getPathToLog('unipi_dep') . ' 2>&1 &');
   }
 
   public static function event() {
