@@ -19,28 +19,31 @@
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
-class openpaths extends eqLogic {
 
-  public static function dependancy_info() {
+class dashbutton extends eqLogic {
+
+
+  public static function deamon_info() {
     $return = array();
-    $return['log'] = 'openpaths_dep';
-    $request = realpath(dirname(__FILE__) . '/../../node/node_modules/request');
-    $return['progress_file'] = '/tmp/openpaths_dep';
-    if (is_dir($request)) {
+    $return['log'] = 'dashbutton_node';
+    $return['state'] = 'nok';
+    $pid = trim( shell_exec ('ps ax | grep "dashbutton/resources/dashbutton.py" | grep -v "grep" | wc -l') );
+    if ($pid != '' && $pid != '0') {
       $return['state'] = 'ok';
-    } else {
-      $return['state'] = 'nok';
     }
+    $return['launchable'] = 'ok';
     return $return;
   }
 
-  public static function dependancy_install() {
-    log::add('openpaths','info','Installation des dépéndances nodejs');
-    $resource_path = realpath(dirname(__FILE__) . '/../../resources');
-    passthru('/bin/bash ' . $resource_path . '/nodejs.sh ' . $resource_path . ' > ' . log::getPathToLog('openpaths_dep') . ' 2>&1 &');
-  }
+  public static function deamon_start() {
+    self::deamon_stop();
+    $deamon_info = self::deamon_info();
+    if ($deamon_info['launchable'] != 'ok') {
+      throw new Exception(__('Veuillez vérifier la configuration', __FILE__));
+    }
+    log::add('dashbutton', 'info', 'Lancement du démon dashbutton');
 
-  public static function cron5() {
+    $service_path = realpath(dirname(__FILE__) . '/../../resources/');
 
     if (!config::byKey('internalPort')) {
       $url = config::byKey('internalProtocol') . config::byKey('internalAddr') . config::byKey('internalComplement') . '/core/api/jeeApi.php?api=' . config::byKey('api');
@@ -48,68 +51,107 @@ class openpaths extends eqLogic {
       $url = config::byKey('internalProtocol') . config::byKey('internalAddr'). ':' . config::byKey('internalPort') . config::byKey('internalComplement') . '/core/api/jeeApi.php?api=' . config::byKey('api');
     }
 
-    foreach (eqLogic::byType('openpaths', true) as $openpaths) {
-      $sensor_path = realpath(dirname(__FILE__) . '/../../node');
-      $cmd = 'nodejs ' . $sensor_path . '/openpaths.js ' . $url . ' ' . $openpaths->getConfiguration('key') . ' ' . $openpaths->getConfiguration('secret') . ' ' . $openpaths->getId();
-      //log::add('openpaths','debug',$cmd);
-      $result = exec($cmd . ' >> ' . log::getPathToLog('openpaths_node') . ' 2>&1 &');
+    $cmd = 'python ' . $service_path . '/dashbutton.python ' . $url;
+
+    log::add('dashbutton', 'debug', $cmd);
+    $result = exec('sudo ' . $cmd . ' >> ' . log::getPathToLog('dashbutton_node') . ' 2>&1 &');
+    if (strpos(strtolower($result), 'error') !== false || strpos(strtolower($result), 'traceback') !== false) {
+      log::add('dashbutton', 'error', $result);
+      return false;
+    }
+
+    $i = 0;
+    while ($i < 30) {
+      $deamon_info = self::deamon_info();
+      if ($deamon_info['state'] == 'ok') {
+        break;
+      }
+      sleep(1);
+      $i++;
+    }
+    if ($i >= 30) {
+      log::add('dashbutton', 'error', 'Impossible de lancer le démon dashbutton, vérifiez le port', 'unableStartDeamon');
+      return false;
+    }
+    message::removeAll('dashbutton', 'unableStartDeamon');
+    log::add('dashbutton', 'info', 'Démon dashbutton lancé');
+    return true;
+
+  }
+
+  public static function deamon_stop() {
+    exec('kill $(ps aux | grep "dashbutton/resources/dashbutton.py" | awk \'{print $2}\')');
+    log::add('dashbutton', 'info', 'Arrêt du service dashbutton');
+    $deamon_info = self::deamon_info();
+    if ($deamon_info['state'] == 'ok') {
+      sleep(1);
+      exec('kill -9 $(ps aux | grep "dashbutton/resources/dashbutton.py" | awk \'{print $2}\')');
+    }
+    $deamon_info = self::deamon_info();
+    if ($deamon_info['state'] == 'ok') {
+      sleep(1);
+      exec('sudo kill -9 $(ps aux | grep "dashbutton/resources/dashbutton.py" | awk \'{print $2}\')');
     }
   }
 
-  public function postSave() {
-    $text = $this->getCmd(null, 'geoloc');
-    if (!is_object($text)) {
-      $text = new openpathsCmd();
-      $text->setLogicalId('geoloc');
-      $text->setIsVisible(0);
-      $text->setName(__('Geoloc', __FILE__));
-    }
-    $text->setType('info');
-    $text->setSubType('string');
-    $text->setEqLogic_id($this->getId());
-    $text->save();
+  public static function dependancy_info() {
+    $return = array();
+    $return['log'] = 'dashbutton_dep';
+    $cmd = "dpkg -l | grep python-scapy";
+        exec($cmd, $output, $return_var);
+        if ($output[0] != "") {
+          $return['state'] = 'ok';
+        } else {
+          $return['state'] = 'nok';
+        }
+    return $return;
+  }
+
+  public static function dependancy_install() {
+    exec('sudo apt-get -y install python-scapy >> ' . log::getPathToLog('unipi_dep') . ' 2>&1 &');
   }
 
   public static function event() {
-
-    $json = file_get_contents('php://input');
-    //log::add('openpaths', 'debug', 'Body ' . print_r($json,true));
-    $json = str_replace('[', '', $json);
-    $json = str_replace(']', '', $json);
-    $body = json_decode($json, true);
-    $data = $body['data'];
-    $json = json_decode($data, true);
-    $lon = $json['lon'];
-    $lat = $json['lat'];
-    if ($lon != '' && $lat != '') {
-      log::add('openpaths', 'debug', 'Longitude ' . $lon . ' latitude ' . $lat);
-
-      $eqlogic = openpaths::byId(init('id'));
-      $text = $eqlogic->getCmd(null, 'geoloc');
-      $text->setConfiguration('value', $lat . ',' . $lon);
-      $text->save();
-      $text->event($lat . ',' . $lon);
-      //log::add('openpaths', 'debug', $eqlogic->getConfiguration('geoloc'));
-      $geoloc = str_replace('#','',$eqlogic->getConfiguration('geoloc'));
-      if (!config::byKey('internalPort')) {
-        $url = config::byKey('internalProtocol') . config::byKey('internalAddr') . config::byKey('internalComplement') . '/core/api/jeeApi.php?api=' . config::byKey('api');
-      } else {
-        $url = config::byKey('internalProtocol') . config::byKey('internalAddr'). ':' . config::byKey('internalPort') . config::byKey('internalComplement') . '/core/api/jeeApi.php?api=' . config::byKey('api');
+    $uid = init('uid');
+    $dashbutton = self::byLogicalId($uid, 'dashbutton');
+    if (!is_object($dashbutton)) {
+      if (config::byKey('include_mode','dashbutton') != 1) {
+        return false;
       }
-      $url = $url . '&type=geoloc&id=' . $geoloc . '&value=' . $lat . ',' . $lon;
-      log::add('openpaths', 'debug', 'URL ' . $url);
-      $result = file_get_contents($url);
-    }
-
+      $dashbutton = new dashbutton();
+      $dashbutton->setEqType_name('dashbutton');
+      $dashbutton->setLogicalId($uid);
+      $dashbutton->setConfiguration('uid', $uid);
+      $dashbutton->setName($uid);
+      $dashbutton->setIsEnable(true);
+      event::add('dashbutton::includeDevice',
+      array(
+        'state' => $state
+      )
+    );
   }
-
+  $dashbutton->setConfiguration('lastCommunication', date('Y-m-d H:i:s'));
+  $dashbutton->save();
+  $dashbuttonCmd = dashbuttonCmd::byEqLogicIdAndLogicalId($dashbutton->getId(),'button');
+  if (!is_object($dashbuttonCmd)) {
+    $dashbuttonCmd = new dashbuttonCmd();
+    $dashbuttonCmd->setName('button');
+    $dashbuttonCmd->setEqLogic_id($dashbutton->getId());
+    $dashbuttonCmd->setLogicalId('button');
+    $dashbuttonCmd->setType('info');
+    $dashbuttonCmd->setSubType('binary');
+    $dashbuttonCmd->setConfiguration('returnStateValue',0);
+    $dashbuttonCmd->setConfiguration('returnStateTime',1);
+  }
+  $dashbuttonCmd->setConfiguration('value', 1);
+  $dashbuttonCmd->save();
+  $dashbuttonCmd->event(1);
 
 }
 
-class openpathsCmd extends cmd {
-  public function execute($_options = null) {
-  }
-
 }
 
-?>
+
+class dashbuttonCmd extends cmd {
+
+}

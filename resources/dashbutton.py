@@ -1,13 +1,23 @@
 #!/usr/bin/env python
-
+import urllib
 import requests
 from scapy.all import *
 
-def toggle_light(src):
-	requests.get(url . src)
+try:
+	jeedom=sys.argv[1]
+except :
+	print 'Il faut donner un jeedom'
+	exit(3)
+
+def call_jeedom(src):
+	appel = '{jeedom}&type=dashbutton&uid={uid}'.format(jeedom=jeedom, uid=src)
+    #print appel
+	opener = urllib.FancyURLopener({})
+    f = opener.open(appel)
+    f.close()
 
 def arp_display(pkt):
 	if ARP in pkt and pkt[ARP].op in (1,2):
-	  toggle_light(pkt[ARP].hwsrc)
+	  call_jeedom(pkt[ARP].hwsrc)
 
 sniff(prn=arp_display, filter="arp", store=0)

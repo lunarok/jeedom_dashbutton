@@ -1,5 +1,0 @@
-[panel,danger]
-.Je n'ai pas d'informations qui remontent
---
-Il faut bien renseigner la configuration de l'équipement pour que les informations soient récupérées d'Openpaths.cc
---

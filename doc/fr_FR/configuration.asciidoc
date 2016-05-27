@@ -2,8 +2,4 @@
 
 Le plugin ne comporte pas de configuration générale.
 
-Lorsque l'on créer un équipement on doit fournir les éléments suivant :
-
-  * API Key (sur le site Openpaths.cc)
-  * API Secret (sur le site Openpaths.cc)
-  * la commande geoloc qu'on souhaite mettre à jour à partir des données Openpaths
+Les équipements sont créés automatiquement quand l'inclusion est activée. Une seule information est disponible sur les équipements, le bouton qui passe à 1 sur pression

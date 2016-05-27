@@ -18,7 +18,7 @@ if ($state == 1) {
             <ul id="ul_eqLogic" class="nav nav-list bs-sidenav">
             <?php
            if ($state == 1) {
-               echo ' <a class="btn btn-success tooltips changeIncludeState" title="{{Inclure Dashb Button}}" data-state="0" style="width : 100%;margin-bottom : 5px;"><i class="fa fa-sign-in fa-rotate-90"></i> {{ArrÃªter inclusion}}</a>';
+               echo ' <a class="btn btn-success tooltips changeIncludeState" title="{{Inclure Dash Button}}" data-state="0" style="width : 100%;margin-bottom : 5px;"><i class="fa fa-sign-in fa-rotate-90"></i> {{ArrÃªter inclusion}}</a>';
            } else {
              echo ' <a class="btn btn-default tooltips changeIncludeState" title="{{Inclure Dash Button}}" data-state="1" style="width : 100%;margin-bottom : 5px;"><i class="fa fa-sign-in fa-rotate-90"></i> {{Mode inclusion}}</a>';
            }
@@ -62,7 +62,7 @@ if ($state == 1) {
  </div>
 
 
-        <legend><i class="fa fa-table"></i>  {{Mes équipements dashbutton}} </legend>
+        <legend><i class="fa fa-table"></i>  {{Mes équipements Dash Button}} </legend>
         <div class="eqLogicThumbnailContainer">
 
                 <?php
@@ -176,9 +176,8 @@ if ($state == 1) {
             <thead>
                 <tr>
                     <th style="width: 50px;">#</th>
-                    <th style="width: 200px;">{{Scanner}}</th>
+                    <th style="width: 200px;">{{Commande}}</th>
                     <th style="width: 150px;">{{Valeur}}</th>
-                    <th style="width: 150px;">{{Source}}</th>
                     <th style="width: 100px;">{{Paramètres}}</th>
                     <th style="width: 100px;"></th>
                 </tr>

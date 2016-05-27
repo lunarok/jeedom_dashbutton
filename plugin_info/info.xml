@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <info>
-    <id>openpaths</id>
-    <name>Openpaths</name>
+    <id>dashbutton</id>
+    <name>Dash Button</name>
     <licence>AGPL</licence>
     <author>lunarok</author>
-    <require>2.1</require>
-    <category>travel</category>
+    <require>2.3.3</require>
+    <category>communication</category>
     <hasDependency>1</hasDependency>
+    <hasOwnDeamon>1</hasOwnDeamon>
 </info>
