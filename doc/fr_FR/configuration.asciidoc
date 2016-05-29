@@ -2,4 +2,4 @@
 
 Le plugin ne comporte pas de configuration générale.
 
-Les équipements sont créés automatiquement quand l'inclusion est activée. Une seule information est disponible sur les équipements, le bouton qui passe à 1 sur pression
+IL faut créer ensuite un équipement par Dash et y saisir l'adresse MAC

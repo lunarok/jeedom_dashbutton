@@ -31,48 +31,6 @@ $("#table_cmd").delegate(".listEquipementAction", 'click', function() {
     });
 });
 
-$('.changeIncludeState').on('click', function () {
-    var el = $(this);
-    jeedom.config.save({
-        plugin : 'dashbutton',
-        configuration: {include_mode: el.attr('data-state')},
-        error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'});
-      },
-      success: function () {
-        if (el.attr('data-state') == 1) {
-            $.hideAlert();
-            $('.changeIncludeState:not(.card)').removeClass('btn-default').addClass('btn-success');
-            $('.changeIncludeState').attr('data-state', 0);
-            $('.changeIncludeState.card').css('background-color','#8000FF');
-            $('.changeIncludeState.card span center').text('{{Arrêter l\'inclusion}}');
-            $('.changeIncludeState:not(.card)').html('<i class="fa fa-sign-in fa-rotate-90"></i> {{Arreter inclusion}}');
-            $('#div_inclusionAlert').showAlert({message: '{{Vous etes en mode inclusion. Recliquez sur le bouton d\'inclusion pour sortir de ce mode}}', level: 'warning'});
-        } else {
-            $.hideAlert();
-            $('.changeIncludeState:not(.card)').addClass('btn-default').removeClass('btn-success btn-danger');
-            $('.changeIncludeState').attr('data-state', 1);
-            $('.changeIncludeState:not(.card)').html('<i class="fa fa-sign-in fa-rotate-90"></i> {{Mode inclusion}}');
-            $('.changeIncludeState.card span center').text('{{Mode inclusion}}');
-            $('.changeIncludeState.card').css('background-color','#ffffff');
-            $('#div_inclusionAlert').hideAlert();
-        }
-    }
-});
-});
-
-$('body').on('dashbutton::includeDevice', function (_event,_options) {
-    if (modifyWithoutSave) {
-        $('#div_inclusionAlert').showAlert({message: '{{Un périphérique vient d\'être inclu/exclu. Veuillez réactualiser la page}}', level: 'warning'});
-    } else {
-        if (_options == '') {
-            window.location.reload();
-        } else {
-            window.location.href = 'index.php?v=d&p=dashbutton&m=dashbutton&id=' + _options;
-        }
-    }
-});
-
 $("#table_cmd").sortable({axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
 function addCmdToTable(_cmd) {
@@ -100,6 +58,7 @@ function addCmdToTable(_cmd) {
         tr += '<td>';
         if (is_numeric(_cmd.id)) {
             tr += '<a class="btn btn-default btn-xs cmdAction expertModeVisible" data-action="configure"><i class="fa fa-cogs"></i></a> ';
+            tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fa fa-rss"></i> {{Tester}}</a>';
         }
         tr += '</td>';
         tr += '</tr>';
