@@ -47,7 +47,22 @@ class dashbutton extends eqLogic {
 
     $url = network::getNetworkAccess('internal') . '/plugins/dashbutton/core/api/jeeDash.php?apikey=' . config::byKey('api');
 
-    $cmd = 'nodejs ' . $service_path . '/dashbutton.js ' . $url;
+    $i = 0;
+    $conf = '';
+    foreach (eqLogic::byType('dashbutton',true) as $dashbutton) {
+      if ($i == 0) {
+        $conf .= '"' . $dashbutton->getConfiguration('uid') . '"';
+        $i = 1;
+      } else {
+        $conf .= ',"' . $dashbutton->getConfiguration('uid') . '"';
+        $i = 2;
+      }
+    }
+    if ($i == 2) {
+      $conf = '[' . $conf . ']';
+    }
+
+    $cmd = 'nodejs ' . $service_path . '/dashbutton.js ' . $url . ' ' . $conf;
 
     log::add('dashbutton', 'debug', $cmd);
     $result = exec('sudo ' . $cmd . ' >> ' . log::getPathToLog('dashbutton_node') . ' 2>&1 &');
@@ -121,21 +136,23 @@ class dashbutton extends eqLogic {
 
   public function postUpdate() {
 
-  $dashbuttonCmd = dashbuttonCmd::byEqLogicIdAndLogicalId($this->getId(),'button');
-  if (!is_object($dashbuttonCmd)) {
-    $dashbuttonCmd = new dashbuttonCmd();
-    $dashbuttonCmd->setName('button');
-    $dashbuttonCmd->setEqLogic_id($this->getId());
-    $dashbuttonCmd->setLogicalId('button');
-    $dashbuttonCmd->setType('info');
-    $dashbuttonCmd->setSubType('binary');
-    $dashbuttonCmd->setConfiguration('returnStateValue',0);
-    $dashbuttonCmd->setConfiguration('returnStateTime',1);
-    $dashbuttonCmd->save();
+    $dashbuttonCmd = dashbuttonCmd::byEqLogicIdAndLogicalId($this->getId(),'button');
+    if (!is_object($dashbuttonCmd)) {
+      $dashbuttonCmd = new dashbuttonCmd();
+      $dashbuttonCmd->setName('button');
+      $dashbuttonCmd->setEqLogic_id($this->getId());
+      $dashbuttonCmd->setLogicalId('button');
+      $dashbuttonCmd->setType('info');
+      $dashbuttonCmd->setSubType('binary');
+      $dashbuttonCmd->setConfiguration('returnStateValue',0);
+      $dashbuttonCmd->setConfiguration('returnStateTime',1);
+      $dashbuttonCmd->save();
+    }
+
+    dashbutton::deamon_stop();
+    dashbutton::deamon_start();
+
   }
-
-}
-
 }
 
 
