@@ -32,6 +32,9 @@ class dashbutton extends eqLogic {
       $return['state'] = 'ok';
     }
     $return['launchable'] = 'ok';
+    if (count(eqLogic::byType('dashbutton',true)) == 0) {
+      $return['launchable'] = 'ko';
+    }
     return $return;
   }
 
