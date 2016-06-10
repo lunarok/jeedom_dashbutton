@@ -11,8 +11,8 @@ DIRECTORY="/var/www"
 if [ ! -d "$DIRECTORY" ]; then
   echo "Création du home www-data pour npm"
   sudo mkdir $DIRECTORY
-  sudo chown -R www-data $DIRECTORY
 fi
+sudo chown -R www-data $DIRECTORY
 echo 10 > /tmp/dashbutton_dep
 actual=`nodejs -v`;
 echo "Version actuelle : ${actual}"
@@ -21,7 +21,7 @@ if [[ $actual == *"4."* || $actual == *"5."* ]]
 then
   echo "Ok, version suffisante";
 else
-  echo "KO, version obsolète à upgrader";
+  echo "KO, version obsolète à upgrader"
   echo "Suppression du Nodejs existant et installation du paquet recommandé"
   sudo apt-get -y --purge autoremove nodejs npm
   arch=`arch`;
@@ -34,6 +34,8 @@ else
     sudo dpkg -i node_latest_armhf.deb
     sudo ln -s /usr/local/bin/node /usr/local/bin/nodejs
     rm node_latest_armhf.deb
+  elif [[ $arch == "aarch64" ]]
+    echo "Architecture non supportée"
   else
     echo "Utilisation du dépot officiel"
     curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
