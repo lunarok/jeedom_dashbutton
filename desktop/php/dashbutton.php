@@ -157,7 +157,6 @@ $eqLogics = eqLogic::byType('dashbutton');
                 <tr>
                     <th style="width: 50px;">#</th>
                     <th style="width: 200px;">{{Commande}}</th>
-                    <th style="width: 150px;">{{Valeur}}</th>
                     <th style="width: 100px;">{{Paramètres}}</th>
                     <th style="width: 100px;"></th>
                 </tr>

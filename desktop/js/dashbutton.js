@@ -50,9 +50,6 @@ function addCmdToTable(_cmd) {
         tr += '<td>';
 			tr += '<span class="cmdAttr" data-l1key="name"></span></td>';
         tr += '<td>';
-        tr += '<span class="cmdAttr" data-l1key="configuration" data-l2key="value"></span>';
-        tr += '</td>';
-        tr += '<td>';
         tr += '<span><input type="checkbox" data-size="mini" data-label-text="{{Afficher}}" class="cmdAttr bootstrapSwitch" data-l1key="isVisible" checked/></span> ';
         tr += '</td>';
         tr += '<td>';
