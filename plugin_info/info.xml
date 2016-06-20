@@ -4,7 +4,7 @@
     <name>Dash Button</name>
     <licence>AGPL</licence>
     <author>lunarok</author>
-    <require>2.3.3</require>
+    <require>2.2.6</require>
     <category>communication</category>
     <hasDependency>1</hasDependency>
     <hasOwnDeamon>1</hasOwnDeamon>
