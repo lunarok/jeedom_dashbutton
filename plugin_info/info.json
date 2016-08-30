@@ -1,0 +1,10 @@
+{
+	"id" : "dashbutton",
+	"name" : "Dash Button",
+	"licence" : "AGPL",
+	"author" : "lunarok",
+	"require" : "2.4",
+	"category" : "devicecommunication",
+  "hasDependency" : 1,
+  "hasOwnDeamon" : 1
+}
