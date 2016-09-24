@@ -1,7 +1,7 @@
 var dash_button = require('node-dash-button'),
     request = require('request'),
     urlJeedom = process.argv[2],
-    conf = process.argv[3],
+    conf = JSON.parse(process.argv[3]),
     debug = process.argv[4] || 1;
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";

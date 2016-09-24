@@ -62,7 +62,7 @@ class dashbutton extends eqLogic {
       }
     }
     if ($i == 2) {
-      $conf = '[' . $conf . ']';
+       $conf = '\'[' . $conf . ']\'';
     }
 
     $cmd = 'nodejs ' . $service_path . '/dashbutton.js ' . $url . ' ' . $conf;
