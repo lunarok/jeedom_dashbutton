@@ -51,9 +51,12 @@ class dashbutton extends eqLogic {
     $url = network::getNetworkAccess('internal') . '/plugins/dashbutton/core/api/jeeDash.php?apikey=' . config::byKey('api');
 
     $i = 0;
+    $count = count(eqLogic::byType('dashbutton',true));
     $conf = '';
     foreach (eqLogic::byType('dashbutton',true) as $dashbutton) {
-      if ($i == 0) {
+      if ($count == 1) {
+        $conf = $dashbutton->getConfiguration('uid');
+      } else if ($i == 0) {
         $conf .= '"' . $dashbutton->getConfiguration('uid') . '"';
         $i = 1;
       } else {
