@@ -5,7 +5,7 @@ var dash_button = require('node-dash-button'),
 
 if (process.argv[4] == 0) {
     var conf = process.argv[3];
-else {
+} else {
     var conf = JSON.parse(process.argv[3]);
 }
 
