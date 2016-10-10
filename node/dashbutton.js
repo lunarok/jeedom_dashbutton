@@ -12,7 +12,7 @@ if (process.argv[4] == 0) {
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 
-var dash = dash_button(conf); //address from step above
+var dash = dash_button(conf, null, null, "all"); //address from step above
 
 dash.on("detected", function (dash_id){
   urlj = urlJeedom + "&uid=" + dash_id;
