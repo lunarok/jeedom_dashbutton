@@ -15,7 +15,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
  $('#bt_healthdash').on('click', function () {
-    $('#md_modal').dialog({title: "{{Santé Neato}}"});
+    $('#md_modal').dialog({title: "{{Santé Dashbutton}}"});
     $('#md_modal').load('index.php?v=d&plugin=dashbutton&modal=health').dialog('open');
 });
  $('#bt_icondash').on('click', function () {
