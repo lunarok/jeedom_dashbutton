@@ -129,6 +129,27 @@ class dashbutton extends eqLogic {
     $resource_path = realpath(dirname(__FILE__) . '/../../resources');
     passthru('/bin/bash ' . $resource_path . '/nodejs.sh ' . $resource_path . ' > ' . log::getPathToLog('dashbutton_dep') . ' 2>&1 &');
   }
+  
+  public static function removeIcon($_icon) {
+    $path = dirname(__FILE__) . '/../../../../' . $_icon;
+    if (file_exists($path)) {
+        unlink($path);
+    }
+	return;
+  }
+  
+   public static function listIcon() {
+    $path = dirname(__FILE__) . '/../../doc/images/dashes';
+    $files = scandir($path);
+	$list = array();
+    foreach ($files as $imgname){
+    if (!in_array($imgname, ['.','..'])){
+		$brand=ucfirst(explode( '.' , $imgname)[0]);
+		$list[] = array('plugins/dashbutton/doc/images/dashes/' . $imgname,$brand);
+		}
+	}
+	return $list;
+  }
 
   public function preUpdate() {
     if ($this->getConfiguration('uid') == '') {

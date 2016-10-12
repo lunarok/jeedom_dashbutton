@@ -14,7 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-
+ $('#bt_healthdash').on('click', function () {
+    $('#md_modal').dialog({title: "{{Santé Neato}}"});
+    $('#md_modal').load('index.php?v=d&plugin=dashbutton&modal=health').dialog('open');
+});
+ $('#bt_icondash').on('click', function () {
+    $('#md_modal').dialog({title: "{{Gestion Icônes}}"});
+    $('#md_modal').load('index.php?v=d&plugin=dashbutton&modal=icon').dialog('open');
+});
 $("#table_cmd").delegate(".listEquipementInfo", 'click', function() {
     var el = $(this);
     jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {

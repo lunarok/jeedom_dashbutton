@@ -26,31 +26,48 @@ $eqLogics = eqLogic::byType('dashbutton');
   <div class="col-lg-10 col-md-9 col-sm-8 eqLogicThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
     <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
     <div class="eqLogicThumbnailContainer">
+		<div class="cursor eqLogicAction" data-action="add" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+        <center>
+          <i class="fa fa-plus-circle" style="font-size : 5em;color:#00979c;"></i>
+        </center>
+        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#00979c"><center>Ajouter</center></span>
+      </div>
 
       <div class="cursor eqLogicAction" data-action="gotoPluginConf" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;">
         <center>
           <i class="fa fa-wrench" style="font-size : 5em;color:#767676;"></i>
         </center>
-        <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Configuration}}</center></span>
+        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Configuration}}</center></span>
       </div>
+	   <div class="cursor" id="bt_healthdash" style="background-color : #ffffff; height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+    <center>
+      <i class="fa fa-medkit" style="font-size : 5em;color:#767676;"></i>
+  </center>
+  <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Santé}}</center></span>
+</div>
+<div class="cursor" id="bt_icondash" style="background-color : #ffffff; height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+    <center>
+      <i class="fa fa-picture-o" style="font-size : 5em;color:#767676;"></i>
+  </center>
+  <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Icônes}}</center></span>
+</div>
     </div>
 
 
-    <legend><i class="fa fa-table"></i>  {{Mes équipements Dash Button}} </legend>
+    <legend><i class="fa fa-table"></i>  {{Mes Dash Button}} </legend>
     <div class="eqLogicThumbnailContainer">
-      <div class="cursor eqLogicAction" data-action="add" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-        <center>
-          <i class="fa fa-plus-circle" style="font-size : 7em;color:#00979c;"></i>
-        </center>
-        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>Ajouter</center></span>
-      </div>
-
       <?php
       foreach ($eqLogics as $eqLogic) {
         $opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
         echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="background-color : #ffffff ; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
         echo "<center>";
-        echo '<img src="plugins/dashbutton/doc/images/dashbutton_icon.png" height="105" width="95" />';
+		$file = $eqLogic->getConfiguration('icone');
+        if (file_exists($file)) {
+            $path = $eqLogic->getConfiguration('icone');
+        } else {
+            $path = 'plugins/dashbutton/doc/images/dashbutton_icon.png';
+        }
+        echo '<img src="'.$path.'" height="105" width="95" />';
         echo "</center>";
         echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $eqLogic->getHumanName(true, true) . '</center></span>';
         echo '</div>';
@@ -71,13 +88,14 @@ $eqLogics = eqLogic::byType('dashbutton');
 
     <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
       <div role="tabpanel" class="tab-pane active" id="eqlogictab">
+	  <div class="col-sm-6">
         <form class="form-horizontal">
           <fieldset>
             <legend><i class="fa fa-arrow-circle-left eqLogicAction cursor" data-action="returnToThumbnailDisplay"></i>  {{Général}}
               <i class='fa fa-cogs eqLogicAction pull-right cursor expertModeVisible' data-action='configure'></i>
             </legend>
             <div class="form-group">
-              <label class="col-sm-3 control-label">{{dashbutton}}</label>
+              <label class="col-sm-3 control-label">{{Dashbutton}}</label>
               <div class="col-sm-3">
                 <input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;" />
                 <input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement dashbutton}}"/>
@@ -143,7 +161,34 @@ $eqLogics = eqLogic::byType('dashbutton');
                 <span class="eqLogicAttr" data-l1key="configuration" data-l2key="updatetime"></span>
               </div>
             </div>
-
+            </div>
+			
+					   <div class="col-sm-6">
+		<div class="form-group">
+		<legend><i class="fa fa-picture-o"></i>  {{Icône}}</legend>
+                       <label class="col-sm-3 control-label">{{Modèle}}</label>
+                       <div class="col-sm-3">
+                         <select id="sel_item2" class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="icone" onchange="document.icon_visu.src=this.value;">
+						<option value="plugins/dashbutton/doc/images/dashbutton_icon.png">{{1-Aucun}}</option>
+                               <?php
+                                   $path = dirname(__FILE__) . '/../../doc/images/dashes';
+                                   $files = scandir($path);
+                                   foreach ($files as $imgname){
+                                       if (!in_array($imgname, ['.','..'])){
+                                           $brand=ucfirst(explode( '.' , $imgname)[0]);
+                                           echo '<option value="' . 'plugins/dashbutton/doc/images/dashes/' .$imgname. '">' . $brand . '</option>';
+                                       }
+                               }
+                           ?>
+					</select>
+                           </br>
+                       </div>
+				
+             <div>
+             <img name="icon_visu" src="" style="width:300px"/>
+             </div>
+             </div>
+             </div>
           </fieldset>
         </form>
       </div>
