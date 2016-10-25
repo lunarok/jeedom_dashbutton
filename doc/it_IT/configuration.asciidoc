@@ -1,0 +1,5 @@
+==== Configuration du plugin
+
+Le plugin ne comporte pas de configuration générale.
+
+IL faut créer ensuite un équipement par Dash et y saisir l'adresse MAC

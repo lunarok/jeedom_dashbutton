@@ -1,0 +1,3 @@
+==== Dash Button, boutons internet d'Amazon
+
+Ce plugin permet d'utiliser les Dash Button Amazon sans passer de commande mais simplement en récupérant leur état sur le réseau wifi
