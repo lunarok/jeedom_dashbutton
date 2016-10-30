@@ -15,13 +15,9 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
-
-/* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
-
 class dashbutton extends eqLogic {
-
 
   public static function deamon_info() {
     $return = array();
@@ -161,8 +157,7 @@ class dashbutton extends eqLogic {
     $this->setLogicalId($this->getConfiguration('uid'));
   }
 
-  public function postUpdate() {
-
+  public function postAjax() {
     $dashbuttonCmd = dashbuttonCmd::byEqLogicIdAndLogicalId($this->getId(),'button');
     if (!is_object($dashbuttonCmd)) {
       $dashbuttonCmd = new dashbuttonCmd();
@@ -175,14 +170,10 @@ class dashbutton extends eqLogic {
       $dashbuttonCmd->setConfiguration('returnStateTime',1);
       $dashbuttonCmd->save();
     }
-
     dashbutton::deamon_stop();
     dashbutton::deamon_start();
-
   }
 }
 
-
 class dashbuttonCmd extends cmd {
-
 }
