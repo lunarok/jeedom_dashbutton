@@ -44,12 +44,12 @@ class dashbutton extends eqLogic {
 
     $service_path = realpath(dirname(__FILE__) . '/../../node/');
 
-    $url = network::getNetworkAccess('internal') . '/plugins/dashbutton/core/api/jeeDash.php?apikey=' . config::byKey('api');
+    $url = network::getNetworkAccess('internal') . '/plugins/dashbutton/core/api/jeeDash.php?apikey=' . jeedom::getApiKey('apidou');
 
     $i = 0;
     $count = count(eqLogic::byType('dashbutton',true));
     $conf = '';
-    foreach (eqLogic::byType('dashbutton',true) as $dashbutton) {
+    foreach (eqLogic::byType('dashbutton') as $dashbutton) {
       if ($count == 1) {
         $conf = $dashbutton->getConfiguration('uid');
       } else if ($i == 0) {
@@ -125,7 +125,7 @@ class dashbutton extends eqLogic {
     $resource_path = realpath(dirname(__FILE__) . '/../../resources');
     passthru('/bin/bash ' . $resource_path . '/nodejs.sh ' . $resource_path . ' > ' . log::getPathToLog('dashbutton_dep') . ' 2>&1 &');
   }
-  
+
   public static function removeIcon($_icon) {
     $path = dirname(__FILE__) . '/../../../../' . $_icon;
     if (file_exists($path)) {
@@ -133,7 +133,7 @@ class dashbutton extends eqLogic {
     }
 	return;
   }
-  
+
    public static function listIcon() {
     $path = dirname(__FILE__) . '/../../doc/images/dashes';
     $files = scandir($path);
