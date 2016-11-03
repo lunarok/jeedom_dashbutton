@@ -44,7 +44,7 @@ class dashbutton extends eqLogic {
 
     $service_path = realpath(dirname(__FILE__) . '/../../node/');
 
-    $url = network::getNetworkAccess('internal') . '/plugins/dashbutton/core/api/jeeDash.php?apikey=' . jeedom::getApiKey('apidou');
+    $url = network::getNetworkAccess('internal') . '/plugins/dashbutton/core/api/jeeDash.php?apikey=' . jeedom::getApiKey('dashbutton');
 
     $i = 0;
     $count = count(eqLogic::byType('dashbutton',true));
