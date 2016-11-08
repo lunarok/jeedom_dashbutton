@@ -1,0 +1,56 @@
+{
+    "plugins\/dashbutton\/desktop\/php\/dashbutton.php": {
+        "Ajouter un équipement": "Ajouter un équipement",
+        "Rechercher": "Rechercher",
+        "Gestion": "Gestion",
+        "Configuration": "Configuration",
+        "Santé": "Santé",
+        "Icônes": "Icônes",
+        "Mes Dash Button": "Mes Dash Button",
+        "Sauvegarder": "Sauvegarder",
+        "Supprimer": "Supprimer",
+        "Configuration avancée": "Configuration avancée",
+        "Equipement": "Equipement",
+        "Commandes": "Commandes",
+        "Dashbutton": "Dashbutton",
+        "Nom de l'équipement dashbutton": "Nom de l'équipement dashbutton",
+        "Objet parent": "Objet parent",
+        "Aucun": "Aucun",
+        "Catégorie": "Catégorie",
+        "Activer": "Activer",
+        "Visible": "Visible",
+        "Délai max entre 2 messages": "Délai max entre 2 messages",
+        "Commentaire": "Commentaire",
+        "MAC Dash Button": "MAC Dash Button",
+        "Dernière Activité": "Dernière Activité",
+        "Icône": "Icône",
+        "Modèle": "Modèle",
+        "1-Aucun": "1-Aucun",
+        "Commande": "Commande",
+        "Paramètres": "Paramètres"
+    },
+    "plugins\/dashbutton\/desktop\/js\/dashbutton.js": {
+        "Santé Dashbutton": "Santé Dashbutton",
+        "Gestion Icônes": "Gestion Icônes",
+        "Afficher": "Afficher",
+        "Tester": "Tester"
+    },
+    "plugins\/dashbutton\/desktop\/modal\/health.php": {
+        "Image": "Image",
+        "Module": "Module",
+        "ID": "ID",
+        "MAC": "MAC",
+        "Date création": "Date création"
+    },
+    "plugins\/dashbutton\/desktop\/modal\/icon.php": {
+        "Icônes locales": "Icônes locales",
+        "Icônes disponibles": "Icônes disponibles",
+        "Supprimer l'icône": "Supprimer l'icône",
+        "Supprimer": "Supprimer",
+        "Envoyer une Icône": "Envoyer une Icône",
+        "Envoyer": "Envoyer",
+        "Icône": "Icône",
+        "Etes-vous sûr de vouloir supprimer l\\'icône suivante ": "Etes-vous sûr de vouloir supprimer l\\'icône suivante ",
+        "Fichier(s) ajouté(s) avec succès": "Fichier(s) ajouté(s) avec succès"
+    }
+}
