@@ -3,3 +3,9 @@
 --
 Non, le plugin récupère la trame émise sur le réseau wifi par les dash buttons sans accès éxtérieur
 --
+
+[panel,primary]
+.La configuration reste sur l'état NOK et le démon ne démarre pas.
+--
+Il faut ajouter avoir au minimum 1 dash button configuré et activé pour que la configuration passe à OK et que le démon démarre.
+--
