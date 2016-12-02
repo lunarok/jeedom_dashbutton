@@ -25,37 +25,11 @@ if (!jeedom::apiAccess(init('apikey'), 'dashbutton')) {
 $uid = init('uid');
 $dashbutton = dashbutton::byLogicalId($uid, 'dashbutton');
 if (!is_object($dashbutton)) {
-  if (config::byKey('include_mode','dashbutton') != 1) {
-    return false;
-  }
-  $dashbutton = new dashbutton();
-  $dashbutton->setEqType_name('dashbutton');
-  $dashbutton->setLogicalId($uid);
-  $dashbutton->setConfiguration('uid', $uid);
-  $dashbutton->setName($uid);
-  $dashbutton->setIsEnable(true);
-  event::add('dashbutton::includeDevice',
-  array(
-    'state' => $state
-  )
-);
+  return true;
 }
 $dashbutton->setConfiguration('lastCommunication', date('Y-m-d H:i:s'));
 $dashbutton->save();
-$dashbuttonCmd = dashbuttonCmd::byEqLogicIdAndLogicalId($dashbutton->getId(),'button');
-if (!is_object($dashbuttonCmd)) {
-$dashbuttonCmd = new dashbuttonCmd();
-$dashbuttonCmd->setName('button');
-$dashbuttonCmd->setEqLogic_id($dashbutton->getId());
-$dashbuttonCmd->setLogicalId('button');
-$dashbuttonCmd->setType('info');
-$dashbuttonCmd->setSubType('binary');
-$dashbuttonCmd->setConfiguration('returnStateValue',0);
-$dashbuttonCmd->setConfiguration('returnStateTime',1);
-}
-$dashbuttonCmd->setConfiguration('value', 1);
-$dashbuttonCmd->save();
-$dashbuttonCmd->event(1);
+$dashbutton->checkAndUpdateCmd('button', 1);
 
 return true;
 ?>
