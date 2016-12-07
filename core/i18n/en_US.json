@@ -1,12 +1,12 @@
 {
     "plugins\/dashbutton\/desktop\/php\/dashbutton.php": {
-        "Ajouter un équipement": "Ajouter un équipement",
-        "Rechercher": "Rechercher",
-        "Gestion": "Gestion",
-        "Configuration": "Configuration",
+        "Ajouter un équipement": "Add an equipment",
+        "Rechercher": "Search",
+        "Gestion": "Management",
+        "Configuration": "Setting",
         "Santé": "Health",
-        "Icônes": "Icônes",
-        "Mes Dash Button": "Mes Dash Button",
+        "Icônes": "Icons",
+        "Mes Dash Button": "My Dash Button",
         "Sauvegarder": "Save",
         "Supprimer": "Delete",
         "Configuration avancée": "Configuration avancée",
