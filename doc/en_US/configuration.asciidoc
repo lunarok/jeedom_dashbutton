@@ -1,5 +1,5 @@
 ==== The plugin configuration
 
-Le plugin ne comporte pas de configuration générale.
+The plugin does not have general configuration.
 
 IL faut créer ensuite un équipement par Dash et y saisir l'adresse MAC
