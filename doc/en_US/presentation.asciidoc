@@ -1,3 +1,3 @@
 ==== Dash Button, Amazon internet orders buttons
 
-Ce plugin permet d'utiliser les Dash Button Amazon sans passer de commande mais simplement en récupérant leur état sur le réseau wifi
+This plugin allows to use the Dash Button Amazon without placing an order but simply by retrieving their status on the wifi network
