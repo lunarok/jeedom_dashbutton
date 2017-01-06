@@ -1,5 +1,5 @@
-==== Configuration du plugin
+==== Plugin Konfiguration
 
-Le plugin ne comporte pas de configuration générale.
+Das Plugin enthält keine allgemeine Konfiguration.
 
 IL faut créer ensuite un équipement par Dash et y saisir l'adresse MAC
