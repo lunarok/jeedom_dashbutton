@@ -2,4 +2,4 @@
 
 Das Plugin enthält keine allgemeine Konfiguration.
 
-IL faut créer ensuite un équipement par Dash et y saisir l'adresse MAC
+Man muss danach eine Gerät durchs Dash erstellen, und dort die MAC-Adresse eingeben.

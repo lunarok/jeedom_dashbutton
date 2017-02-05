@@ -5,7 +5,7 @@ Non, le plugin récupère la trame émise sur le réseau wifi par les dash butto
 --
 
 [panel,primary]
-.La configuration reste sur l'état NOK et le démon ne démarre pas.
+.Die Konfiguration bleibt bei den NOK Zustand und der Daemon startet nicht.
 --
-Il faut avoir au minimum 1 dash button configuré et activé pour que la configuration passe à OK et que le démon démarre.
+Sie benötigen mindestens 1 konfigurierte und aktivierte Dash-Taste, damit die Konfiguration auf "OK" geht und der Daemon startet.
 --
