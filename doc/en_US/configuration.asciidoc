@@ -2,4 +2,4 @@
 
 The plugin does not have general configuration.
 
-You have to create an equipment for each Dash and enter the MAC address for each
+Il faut créer ensuite un équipement par Dash et y saisir l'adresse MAC
