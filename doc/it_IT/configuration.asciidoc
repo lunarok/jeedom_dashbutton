@@ -2,5 +2,5 @@
 
 Le plugin ne comporte pas de configuration générale.
 
-Il faut créer ensuite un équipement par Dash et y saisir l'adresse MAC, en repectant le format suivant :
+Il faut créer ensuite un équipement par Dash et y saisir l'adresse MAC, en respectant le format suivant :
 00:00:00:00:00:00
