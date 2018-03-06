@@ -123,7 +123,7 @@ class dashbutton extends eqLogic {
   public static function dependancy_install() {
     log::add('dashbutton','info','Installation des dépéndances nodejs');
     $resource_path = realpath(dirname(__FILE__) . '/../../resources');
-    passthru('/bin/bash ' . $resource_path . '/nodejs.sh ' . $resource_path . ' > ' . log::getPathToLog('dashbutton_dep') . ' 2>&1 &');
+    passthru('/bin/bash ' . $resource_path . '/nodejs.sh ' . $resource_path . ' dashbutton > ' . log::getPathToLog('dashbutton_dep') . ' 2>&1 &');
   }
 
   public static function removeIcon($_icon) {
