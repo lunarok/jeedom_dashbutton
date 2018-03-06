@@ -1,0 +1,11 @@
+{
+  "name": "JeedomDashButton",
+  "version": "0.0.1",
+  "description": "Node to connect Dash Buttons to Jeedom",
+  "license": "GPL-3.0",
+  "repository": "npm/npm",
+  "dependencies": {
+    "request": "latest",
+    "node-dash-button": "latest"
+  }
+}

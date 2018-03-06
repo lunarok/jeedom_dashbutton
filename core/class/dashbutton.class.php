@@ -23,7 +23,7 @@ class dashbutton extends eqLogic {
     $return = array();
     $return['log'] = 'dashbutton_node';
     $return['state'] = 'nok';
-    $pid = trim( shell_exec ('ps ax | grep "dashbutton/node/dashbutton.js" | grep -v "grep" | wc -l') );
+    $pid = trim( shell_exec ('ps ax | grep "dashbutton/resources/dashbutton.js" | grep -v "grep" | wc -l') );
     if ($pid != '' && $pid != '0') {
       $return['state'] = 'ok';
     }
@@ -42,7 +42,7 @@ class dashbutton extends eqLogic {
     }
     log::add('dashbutton', 'info', 'Lancement du démon dashbutton');
 
-    $service_path = realpath(dirname(__FILE__) . '/../../node/');
+    $service_path = realpath(dirname(__FILE__) . '/../../resources/');
 
     $url = network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp') . '/plugins/dashbutton/core/api/jeeDash.php?apikey=' . jeedom::getApiKey('dashbutton');
 
@@ -93,24 +93,24 @@ class dashbutton extends eqLogic {
   }
 
   public static function deamon_stop() {
-    exec('kill $(ps aux | grep "dashbutton/node/dashbutton.js" | awk \'{print $2}\')');
+    exec('kill $(ps aux | grep "dashbutton/resources/dashbutton.js" | awk \'{print $2}\')');
     log::add('dashbutton', 'info', 'Arrêt du service dashbutton');
     $deamon_info = self::deamon_info();
     if ($deamon_info['state'] == 'ok') {
       sleep(1);
-      exec('kill -9 $(ps aux | grep "dashbutton/node/dashbutton.js" | awk \'{print $2}\')');
+      exec('kill -9 $(ps aux | grep "dashbutton/resources/dashbutton.js" | awk \'{print $2}\')');
     }
     $deamon_info = self::deamon_info();
     if ($deamon_info['state'] == 'ok') {
       sleep(1);
-      exec('sudo kill -9 $(ps aux | grep "dashbutton/node/dashbutton.js" | awk \'{print $2}\')');
+      exec('sudo kill -9 $(ps aux | grep "dashbutton/resources/dashbutton.js" | awk \'{print $2}\')');
     }
   }
 
   public static function dependancy_info() {
     $return = array();
     $return['log'] = 'dashbutton_dep';
-    $request = realpath(dirname(__FILE__) . '/../../node/node_modules/request');
+    $request = realpath(dirname(__FILE__) . '/../../resources/node_modules/request');
     $return['progress_file'] = '/tmp/dashbutton_dep';
     if (is_dir($request)) {
       $return['state'] = 'ok';
