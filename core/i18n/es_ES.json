@@ -52,5 +52,10 @@
         "Icône": "Icono",
         "Etes-vous sûr de vouloir supprimer l\\'icône suivante ": "¿Confirma que desea quitar el siguiente icono?",
         "Fichier(s) ajouté(s) avec succès": "Archivo(s) añadido(s) con éxito"
+    },
+    "plugins\/dashbutton\/plugin_info\/configuration.php": {
+        "Démon": "Démon",
+        "Défaut": "Défaut",
+        "Interface réseau (modification dangereuse)": "Interface réseau (modification dangereuse)"
     }
 }

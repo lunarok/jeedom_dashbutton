@@ -1,7 +1,8 @@
 var dash_button = require('node-dash-button'),
     request = require('request'),
     urlJeedom = process.argv[2],
-    debug = process.argv[5] || 1;
+    debug = process.argv[6] || 1,
+    iface = process.argv[5];
 
 if (process.argv[4] == 0) {
     var conf = process.argv[3];
@@ -9,10 +10,14 @@ if (process.argv[4] == 0) {
     var conf = JSON.parse(process.argv[3]);
 }
 
+if(iface === undefined || iface === ''){
+    iface = null; 
+}
+
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 
-var dash = dash_button(conf, null, null, "all"); //address from step above
+var dash = dash_button(conf, iface, null, "all"); //address from step above
 
 dash.on("detected", function (dash_id){
   urlj = urlJeedom + "&uid=" + dash_id;
