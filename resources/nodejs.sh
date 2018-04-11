@@ -5,6 +5,8 @@ echo "Début de l'installation"
 
 echo 0 > /tmp/${2}_dep
 
+sudo apt-get install libpcap-dev
+
 wget https://raw.githubusercontent.com/lunarok/jeedom_nodejs/master/nodejs.sh -O dependencies.sh
 sh dependencies.sh ${1} ${2}
 rm dependencies.sh

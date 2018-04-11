@@ -93,17 +93,17 @@ class dashbutton extends eqLogic {
   }
 
   public static function deamon_stop() {
-    exec('kill $(ps aux | grep "dashbutton/resources/dashbutton.js" | awk \'{print $2}\')');
+    exec('kill $(ps aux | grep "/dashbutton.js" | awk \'{print $2}\')');
     log::add('dashbutton', 'info', 'Arrêt du service dashbutton');
     $deamon_info = self::deamon_info();
     if ($deamon_info['state'] == 'ok') {
       sleep(1);
-      exec('kill -9 $(ps aux | grep "dashbutton/resources/dashbutton.js" | awk \'{print $2}\')');
+      exec('kill -9 $(ps aux | grep "/dashbutton.js" | awk \'{print $2}\')');
     }
     $deamon_info = self::deamon_info();
     if ($deamon_info['state'] == 'ok') {
       sleep(1);
-      exec('sudo kill -9 $(ps aux | grep "dashbutton/resources/dashbutton.js" | awk \'{print $2}\')');
+      exec('sudo kill -9 $(ps aux | grep "/dashbutton.js" | awk \'{print $2}\')');
     }
   }
 

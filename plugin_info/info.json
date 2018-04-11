@@ -1,10 +1,12 @@
 {
-	"id" : "dashbutton",
-	"name" : "Dash Button",
-	"licence" : "AGPL",
-	"author" : "lunarok",
-	"require" : "2.4",
-	"category" : "devicecommunication",
-  "hasDependency" : 1,
-  "hasOwnDeamon" : 1
+    "id" : "dashbutton",
+    "name" : "Dash Button",
+    "licence" : "AGPL",
+    "author" : "lunarok",
+    "require" : "2.4",
+    "category" : "devicecommunication",
+    "hasDependency" : 1,
+    "hasOwnDeamon" : 1,
+    "changelog" : "https://lunarok.github.io/jeedom_docs/plugins/dashbutton/changelog.html",
+    "documentation" : "https://lunarok.github.io/jeedom_docs/plugins/dashbutton/"
 }
