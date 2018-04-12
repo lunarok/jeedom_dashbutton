@@ -1,6 +1,6 @@
 ==== Plugin Konfiguration
 
-Das Plugin enthält keine allgemeine Konfiguration.
+Il est possible de sélectionner l'interface réseau de communication.
 
 Il faut créer ensuite un équipement par Dash et y saisir l'adresse MAC, en respectant le format suivant :
 00:00:00:00:00:00
