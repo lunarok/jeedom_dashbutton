@@ -63,8 +63,10 @@ class dashbutton extends eqLogic {
     if ($i == 2) {
        $conf = '\'[' . $conf . ']\'';
     }
+	
+    $interface = config::byKey('interface',  'dashbutton');
 
-    $cmd = 'nodejs ' . $service_path . '/dashbutton.js ' . $url . ' ' . $conf . ' ' . $i;
+    $cmd = 'nodejs ' . $service_path . '/dashbutton.js ' . $url . ' ' . $conf . ' ' . $i . ' ' . $interface;
 
     log::add('dashbutton', 'debug', $cmd);
     $result = exec('sudo ' . $cmd . ' >> ' . log::getPathToLog('dashbutton_node') . ' 2>&1 &');
