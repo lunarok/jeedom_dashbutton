@@ -1,12 +1,15 @@
 {
     "id" : "dashbutton",
     "name" : "Dash Button",
+    "description" : "Plugin pour utiliser les Dash Button d'Amazon dans Jeedom. Après ajout de votre dashbutton, Jeedom récupèrera les pressions faites.",
     "licence" : "AGPL",
     "author" : "lunarok",
     "require" : "2.4",
     "category" : "devicecommunication",
     "hasDependency" : 1,
     "hasOwnDeamon" : 1,
+	"language" : ["fr_FR","en_US"],
+	"compatibility" : ["miniplus","smart","rpi","docker","diy","mobile"],
     "changelog" : "https://lunarok.github.io/jeedom_docs/plugins/dashbutton/changelog.html",
     "documentation" : "https://lunarok.github.io/jeedom_docs/plugins/dashbutton/"
 }
