@@ -33,7 +33,10 @@ if (!isConnect()) {
                     <?php
                         $interfaces = network::getInterfaces();
                         foreach ($interfaces as $interface) {
-                            echo '<option value="'.$interface.'">'. $interface. '</option>';
+                            $baseInterface = substr($interface, 0, strrpos($interface, '@'));
+                            if ($baseInterface && $baseInterface != $interface)
+                                echo '<option value="' . $baseInterface . '">' . $baseInterface . '</option>';
+                            echo '<option value="' . $interface . '">' . $interface . '</option>';
                         }
                     ?>
                 </select>
