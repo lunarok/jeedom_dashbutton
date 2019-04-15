@@ -20,7 +20,7 @@ if (!isConnect('admin')) {
 }
 ?>
 <div class="col-sm-6">
-<legend><i class="fa fa-folder-open"></i>  {{Icônes locales}}</legend>
+<legend><i class="fas fa-folder-open"></i>  {{Icônes locales}}</legend>
             <form class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
@@ -31,14 +31,14 @@ if (!isConnect('admin')) {
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Supprimer l'icône}}</label>
                         <div class="col-sm-4 col-xs-6">
-                            <a class="btn btn-danger" id="bt_removeIcon"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
+                            <a class="btn btn-danger" id="bt_removeIcon"><i class="fas fa-trash-o"></i> {{Supprimer}}</a>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Envoyer une Icône}}</label>
                         <div class="col-sm-8 col-xs-6">
                             <span class="btn btn-default btn-file">
-                                <i class="fa fa-cloud-upload"></i> {{Envoyer}}<input id="bt_uploadIcon" type="file" name="file" data-url="plugins/dashbutton/core/ajax/dashbutton.ajax.php?action=iconUpload&jeedom_token=<?php echo ajax::getToken(); ?>">
+                                <i class="fas fa-cloud-upload"></i> {{Envoyer}}<input id="bt_uploadIcon" type="file" name="file" data-url="plugins/dashbutton/core/ajax/dashbutton.ajax.php?action=iconUpload&jeedom_token=<?php echo ajax::getToken(); ?>">
                             </span>
                         </div>
                     </div>
@@ -46,7 +46,7 @@ if (!isConnect('admin')) {
             </form>
 </div>
 <div class="col-sm-6">
-<legend><i class="fa fa-picture-o"></i>  {{Icône}}</legend>
+<legend><i class="fas fa-picture-o"></i>  {{Icône}}</legend>
 <div style="text-align: center">
     <img class="dahsicon" name="icon_visuC" src="" style="width:300px"/>
 </div>
