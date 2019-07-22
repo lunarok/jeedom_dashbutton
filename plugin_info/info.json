@@ -4,7 +4,7 @@
     "description" : "Plugin pour utiliser les Dash Button d'Amazon dans Jeedom. Après ajout de votre dashbutton, Jeedom récupèrera les pressions faites.",
     "licence" : "AGPL",
     "author" : "lunarok",
-    "require" : "2.4",
+    "require" : "3.3.24",
     "category" : "devicecommunication",
     "hasDependency" : 1,
     "hasOwnDeamon" : 1,
